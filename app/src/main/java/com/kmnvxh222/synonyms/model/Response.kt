@@ -1,7 +1,9 @@
 package com.kmnvxh222.synonyms.model
 
-data class Response<T> (
-    val msg : String,
-    val code : Int,
+import com.google.gson.annotations.SerializedName
+
+data class Response<T>(
+    val msg: String,
+    val code: String,
     val response: T?
 )
