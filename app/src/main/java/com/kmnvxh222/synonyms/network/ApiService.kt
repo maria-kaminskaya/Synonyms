@@ -1,6 +1,6 @@
 package com.kmnvxh222.synonyms.network
 
-import com.kmnvxh222.synonyms.model.*
+import com.kmnvxh222.synonyms.model.remote.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

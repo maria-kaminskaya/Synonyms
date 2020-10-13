@@ -1,6 +1,4 @@
-package com.kmnvxh222.synonyms.model
-
-import com.google.gson.annotations.SerializedName
+package com.kmnvxh222.synonyms.model.remote
 
 data class Response<T>(
     val msg: String,

@@ -1,8 +1,7 @@
-package com.kmnvxh222.synonyms.network.apiclient
+package com.kmnvxh222.synonyms.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.kmnvxh222.synonyms.network.ApiService
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

@@ -2,10 +2,10 @@ package com.kmnvxh222.synonyms.repository.remote
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.kmnvxh222.synonyms.model.Forms
-import com.kmnvxh222.synonyms.model.Root
-import com.kmnvxh222.synonyms.model.Syn
-import com.kmnvxh222.synonyms.network.apiclient.RetrofitApi
+import com.kmnvxh222.synonyms.model.remote.Forms
+import com.kmnvxh222.synonyms.model.remote.Root
+import com.kmnvxh222.synonyms.model.remote.Syn
+import com.kmnvxh222.synonyms.network.RetrofitApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -19,6 +19,7 @@ class RemoteRepository() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
+                    formData = response.response?.one
                     Log.d("RemoteRepository", "FORMS ${response}")
                 },
                 { error ->
@@ -36,7 +37,7 @@ class RemoteRepository() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
-
+                    rootData = response.response?.one
                     Log.d("RemoteRepository", "ROOT ${response}")
                 },
                 { error ->
@@ -54,7 +55,7 @@ class RemoteRepository() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
-
+                    synsData = response.response?.one
                     Log.d("RemoteRepository", "SYNS ${response}")
                 },
                 { error ->

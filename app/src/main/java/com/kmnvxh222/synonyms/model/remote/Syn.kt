@@ -1,4 +1,4 @@
-package com.kmnvxh222.synonyms.model
+package com.kmnvxh222.synonyms.model.remote
 
 data class Syn(
     val original : String,

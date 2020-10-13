@@ -1,4 +1,4 @@
-package com.kmnvxh222.synonyms.model
+package com.kmnvxh222.synonyms.model.remote
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
