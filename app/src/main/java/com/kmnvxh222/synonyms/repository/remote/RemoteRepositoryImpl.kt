@@ -9,12 +9,11 @@ import com.kmnvxh222.synonyms.network.RetrofitApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RemoteRepository() {
+class RemoteRepositoryImpl:RemoteRepositoryInterface {
 
-    @SuppressLint("CheckResult")
-    fun getDataForms(): Forms? {
+    override fun getDataForms(query: String): Forms? {
         var formData: Forms? = null
-        val observable = RetrofitApi.retrofitApiService.getForms("кот")
+        val observable = RetrofitApi.retrofitApiService.getForms(query)
         observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -29,10 +28,9 @@ class RemoteRepository() {
         return formData
     }
 
-    @SuppressLint("CheckResult")
-    fun getDataRoot(): Root? {
+    override fun getDataRoot(query: String): Root? {
         var rootData: Root? = null
-        val observable = RetrofitApi.retrofitApiService.getRoot("кот")
+        val observable = RetrofitApi.retrofitApiService.getRoot(query)
         observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -47,10 +45,9 @@ class RemoteRepository() {
         return rootData
     }
 
-    @SuppressLint("CheckResult")
-    fun getDataSyns(): Syn? {
+    override fun getDataSyns(query: String): Syn? {
         var synsData: Syn? = null
-        val observable = RetrofitApi.retrofitApiService.getSyns("кот")
+        val observable = RetrofitApi.retrofitApiService.getSyns(query)
         observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

@@ -17,8 +17,8 @@ interface LexemeDao {
     fun deleteLexeme(lexeme: Lexeme)
 
     @Query("SELECT * FROM lexemes")
-    fun getAllLiveData(): LiveData<List<Lexeme>>
+    fun getAllLiveData(): LiveData<List<Lexeme>>?
 
     @Query("SELECT * FROM lexemes WHERE id = :id")
-    fun getLexemeById(id: Long): Lexeme
+    fun getLexemeById(id: Long): Lexeme?
 }
