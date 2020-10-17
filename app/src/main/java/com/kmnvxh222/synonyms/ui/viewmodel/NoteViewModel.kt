@@ -1,18 +1,24 @@
 package com.kmnvxh222.synonyms.ui.viewmodel
 
 import android.content.Context
+import android.os.Handler
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kmnvxh222.synonyms.model.locale.Lexeme
 import com.kmnvxh222.synonyms.model.locale.Note
 import com.kmnvxh222.synonyms.model.remote.Syn
+import com.kmnvxh222.synonyms.repository.async.AsyncRepositoryInterface
 import com.kmnvxh222.synonyms.repository.locale.LexemesRepositoryImpl
 import com.kmnvxh222.synonyms.repository.locale.LexemesRepositoryInterface
 import com.kmnvxh222.synonyms.repository.locale.NotesRepositoryImpl
 import com.kmnvxh222.synonyms.repository.locale.NotesRepositoryInterface
 import com.kmnvxh222.synonyms.repository.remote.RemoteRepositoryImpl
 import com.kmnvxh222.synonyms.repository.remote.RemoteRepositoryInterface
+import java.util.concurrent.SynchronousQueue
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
 class NoteViewModel(context: Context) : ViewModel() {
 
@@ -38,9 +44,10 @@ class NoteViewModel(context: Context) : ViewModel() {
 
     fun editNote(note: Note) {
         repository.updateNote(note)
+
     }
 
-    fun addLexeme(word: String) {
+    fun addLexeme(word: String){
 //        val forms = repositoryRemote.getDataForms(word).value?.forms.toString()
 //        val root = repositoryRemote.getDataRoot(word).value?.root.toString()
         val syns = repositoryRemote.getDataSyns(word).value?.syns.toString()
@@ -51,12 +58,7 @@ class NoteViewModel(context: Context) : ViewModel() {
     fun getLexemeSyns(lexeme: String): MutableLiveData<Syn?> {
         val syns: MutableLiveData<Syn?> = repositoryRemote.getDataSyns(lexeme)
         Log.d("getLexemeSyns", "$syns")
-
-//    val syns = repositoryRemote.getDataSyns(lexeme)?.syns
-//        val sType = object : TypeToken<List<String>>() { }.type
-//        val syns = Gson().fromJson<List<String>>(synsJson, sType)
         return syns
     }
-
 
 }

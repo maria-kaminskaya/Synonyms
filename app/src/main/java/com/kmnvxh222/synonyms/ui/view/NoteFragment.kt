@@ -12,18 +12,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
+import com.kmnvxh222.synonyms.R
 import com.kmnvxh222.synonyms.databinding.FragmentNoteBinding
+import com.kmnvxh222.synonyms.model.locale.Note
 import com.kmnvxh222.synonyms.model.remote.Syn
 import com.kmnvxh222.synonyms.ui.viewmodel.NoteViewModel
-import androidx.lifecycle.Observer
-import com.kmnvxh222.synonyms.R
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_note.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -32,6 +29,9 @@ class NoteFragment : Fragment() {
     private lateinit var binding: FragmentNoteBinding
     private val main = this
     private lateinit var viewModel: NoteViewModel
+    private var argumentCheck: Boolean = false
+    private var noteLocal: Note? = null
+    private var noteArgument: Note? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,9 +44,19 @@ class NoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         buttonListener()
+        checkData()
         super.onViewCreated(view, savedInstanceState)
+    }
 
-
+    private fun checkData() {
+        if (arguments != null) {
+            noteArgument = requireArguments().get("note") as? Note
+            if (noteArgument!=null){
+                binding.textViewDate.text = noteArgument!!.date
+                binding.editText.append(noteArgument!!.content)
+                argumentCheck = true
+            }
+        }
     }
 
     fun getWord(textOfTextView: String, offsetPosition: Int): String? {
@@ -74,36 +84,39 @@ class NoteFragment : Fragment() {
                 }
             }
             return textOfTextView.substring(startpositionofword, endpositionofword)
-        }catch (e: RuntimeException){
+        } catch (e: RuntimeException) {
             return ""
         }
     }
 
 
-
     private fun setDialogLexeme(x: Float, y: Float, visibility: Boolean, text: String) {
         val syns = viewModel.getLexemeSyns(text)
-        syns.observe(this, Observer<Syn?>(){syn->
-            if (syn!=null){
-            val syns: List<String>? = syn.syns
+        syns.observe(this, Observer<Syn?>() { syn ->
+            if (syn != null) {
+                val syns: List<String>? = syn.syns
                 binding.dialogLexeme.isVisible = visibility
                 binding.dialogLexeme.x = x
                 binding.dialogLexeme.y = y + 350
                 binding.textViewLexeme.text = text
                 Log.d("setDialogLexeme", "syns $syns")
-                binding.textViewSyns.text = syns.toString()
+                if (syns != null) {
+                    for (i in syns){
+                        binding.textViewSyns.append(i+"\n");
+                    }
+                }
                 buttonDialogListener(text)
             }
         })
     }
 
-    private fun buttonDialogListener(lexeme: String){
-        if(dialogLexeme.isVisible){
+    private fun buttonDialogListener(lexeme: String) {
+        if (dialogLexeme.isVisible) {
             buttonCancel.setOnClickListener {
                 binding.dialogLexeme.isVisible = false
             }
             buttonFavorites.setOnClickListener {
-                viewModel.addLexeme(lexeme)
+                val res = viewModel.addLexeme(lexeme)
                 buttonFavorites.setBackgroundResource(R.drawable.ic_favorite)
             }
         }
@@ -113,12 +126,25 @@ class NoteFragment : Fragment() {
     private fun buttonListener() {
         with(binding) {
             buttonBack.setOnClickListener {
+                if (argumentCheck && noteLocal!=null) {
+                    noteArgument?.content= noteLocal!!.content
+                    noteArgument?.title= noteLocal!!.title
+                    noteArgument?.date= noteLocal!!.date
+                    viewModel.editNote(noteArgument!!)
+                }
+                else if(!argumentCheck && noteLocal!=null){
+                    viewModel.addNewNote(noteLocal!!)
+                }
                 NavHostFragment.findNavController(main).popBackStack()
             }
+
             buttonDelete.setOnClickListener {
+                viewModel.deleteNote(noteArgument!!)
             }
+
             val textWatcher = object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
+                    saveNote(s)
                 }
 
                 override fun beforeTextChanged(
@@ -127,23 +153,23 @@ class NoteFragment : Fragment() {
                     count: Int,
                     after: Int
                 ) {
-                        editText.setOnTouchListener { v, event ->
-                            val layout: Layout? = (v as TextView).layout
-                            val x = event.x.toInt()
-                            val y = event.y.toInt()
-                            if (layout != null) {
-                                val line: Int = layout.getLineForVertical(y)
-                                val offset: Int = layout.getOffsetForHorizontal(line, x.toFloat())
-                                    val text = s.toString()
-                                    val word = getWord(text, offset)
-                                    Log.v("getWord", "$word")
-                                if (word!=null){
-                                    setDialogLexeme(event.x, event.y, true, word)
-                                }
-
+                    editText.setOnTouchListener { v, event ->
+                        val layout: Layout? = (v as TextView).layout
+                        val x = event.x.toInt()
+                        val y = event.y.toInt()
+                        if (layout != null) {
+                            val line: Int = layout.getLineForVertical(y)
+                            val offset: Int = layout.getOffsetForHorizontal(line, x.toFloat())
+                            val text = s.toString()
+                            val word = getWord(text, offset)
+                            Log.v("getWord", "$word")
+                            if (word != null) {
+                                setDialogLexeme(event.x, event.y, true, word)
                             }
-                            true
+
                         }
+                        true
+                    }
 
 
                 }
@@ -156,4 +182,26 @@ class NoteFragment : Fragment() {
         }
 
     }
+
+    private fun saveNote(s: CharSequence?) {
+        if (s!=null){
+            var title: String = ""
+            val content = s.toString()
+            if(s.length>10){
+                title = content.substring(0, 10)
+            }else if(s.length<10){
+                title = content
+            }
+            val date = getCurrentDate()
+            noteLocal = Note(title,content,date)
+        }
+    }
+
+    private fun getCurrentDate(): String {
+        val currentDate = Date()
+        val sdf = SimpleDateFormat("dd.MM.YYYY")
+        val formattedDate: String = sdf.format(currentDate)
+        return formattedDate
+    }
+
 }

@@ -12,9 +12,9 @@ class FavoritesViewModel(context: Context): ViewModel()  {
         repository = LexemesRepositoryImpl(context)
     }
 
-    fun getAllLexemes(){
+    fun getAllLexemes()=
         repository.getAllLexemes()
-    }
+
 
     fun deleteAll(){
         repository.deleteAll()

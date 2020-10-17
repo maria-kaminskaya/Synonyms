@@ -14,9 +14,9 @@ class AllNotesViewModel(context: Context): ViewModel() {
     }
 
 
-    fun getAllNotes(){
+    fun getAllNotes()=
         repository.getAllNotes()
-    }
+
 
     fun deleteAllNote(){
         repository.deleteAll()

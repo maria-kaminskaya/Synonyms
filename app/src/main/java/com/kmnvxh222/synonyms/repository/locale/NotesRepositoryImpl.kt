@@ -38,15 +38,12 @@ class NotesRepositoryImpl(context: Context) : NotesRepositoryInterface, AsyncRep
 
     override fun getAllNotes(): LiveData<List<Note>>? {
         var listNotes: LiveData<List<Note>>? = null
-        val task = Runnable{
             listNotes = dbDao.getAllLiveData()
-        }
-        threadPoolExecutor.submit(task)
         return listNotes
     }
 
-    override fun getNoteById(id: Long): Note? {
-        var note: Note? = null
+    override fun getNoteById(id: Long): LiveData<Note>? {
+        var note: LiveData<Note>? = null
         val task = Runnable{
             note = dbDao.getNoteById(id)
         }
@@ -61,7 +58,7 @@ class NotesRepositoryImpl(context: Context) : NotesRepositoryInterface, AsyncRep
         threadPoolExecutor.submit(task)
     }
 
-    override fun close(threadPoolExecutor: ThreadPoolExecutor) {
+    override fun close() {
         threadPoolExecutor.shutdown()
     }
 

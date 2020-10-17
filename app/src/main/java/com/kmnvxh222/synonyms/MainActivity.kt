@@ -10,11 +10,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        Log.d("MainActivity",RemoteRepository().getDataForms().toString())
-//        RemoteRepository().getDataForms()
-
-//        Log.d("MainActivity",RemoteRepository().getDataRoot().toString())
-//        Log.d("MainActivity", RemoteRepositoryImpl().getDataSyns().toString())
     }
 }

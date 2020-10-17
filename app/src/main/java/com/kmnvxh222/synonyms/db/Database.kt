@@ -20,6 +20,7 @@ fun getAppDatabase(context: Context): AppDatabase {
         context,
         AppDatabase::class.java,
         "database")
+        .allowMainThreadQueries()
         .build()
 }
 

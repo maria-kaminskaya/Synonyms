@@ -9,7 +9,7 @@
         android:id="@+id/allNotesFragment"
         android:name="com.kmnvxh222.synonyms.ui.view.AllNotesFragment"
         android:label="fragment_all_notes"
-        tools:layout="@layout/fragment_all_notes" >
+        tools:layout="@layout/fragment_all_notes">
         <action
             android:id="@+id/action_allNotesFragment_to_noteFragment"
             app:destination="@id/noteFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/favoritesLexemesFragment"
         android:name="com.kmnvxh222.synonyms.ui.view.FavoritesLexemesFragment"
         android:label="fragment_favorites_lexemes"
-        tools:layout="@layout/fragment_favorites_lexemes" >
+        tools:layout="@layout/fragment_favorites_lexemes">
         <action
             android:id="@+id/action_favoritesLexemesFragment_to_lexemeFragment"
             app:destination="@id/lexemeFragment" />
@@ -30,10 +30,18 @@
         android:id="@+id/noteFragment"
         android:name="com.kmnvxh222.synonyms.ui.view.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note">
+        <argument
+            android:name="note"
+            app:argType="com.kmnvxh222.synonyms.model.locale.Note" />
+    </fragment>
     <fragment
         android:id="@+id/lexemeFragment"
         android:name="com.kmnvxh222.synonyms.ui.view.LexemeFragment"
         android:label="fragment_lexeme"
-        tools:layout="@layout/fragment_lexeme" />
+        tools:layout="@layout/fragment_lexeme">
+        <argument
+            android:name="lexeme"
+            app:argType="com.kmnvxh222.synonyms.model.locale.Lexeme" />
+    </fragment>
 </navigation>

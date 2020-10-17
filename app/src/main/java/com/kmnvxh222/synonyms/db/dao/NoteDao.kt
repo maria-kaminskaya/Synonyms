@@ -19,7 +19,7 @@ interface NoteDao {
     fun getAllLiveData(): LiveData<List<Note>>?
 
     @Query("SELECT * FROM notes WHERE id = :id")
-    fun getNoteById(id: Long): Note?
+    fun getNoteById(id: Long): LiveData<Note>?
 
     @Query("DELETE FROM notes")
     fun deleteAllNotes()

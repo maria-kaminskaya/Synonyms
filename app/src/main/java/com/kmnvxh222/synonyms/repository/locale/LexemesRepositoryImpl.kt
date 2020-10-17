@@ -32,10 +32,7 @@ class LexemesRepositoryImpl(context: Context) : LexemesRepositoryInterface,
 
     override fun getAllLexemes(): LiveData<List<Lexeme>>? {
         var listLexemes: LiveData<List<Lexeme>>? = null
-        val task = Runnable {
             listLexemes = dbDao.getAllLiveData()
-        }
-        threadPoolExecutor.submit(task)
         return listLexemes
     }
 
@@ -55,7 +52,7 @@ class LexemesRepositoryImpl(context: Context) : LexemesRepositoryInterface,
         threadPoolExecutor.submit(task)
     }
 
-    override fun close(threadPoolExecutor: ThreadPoolExecutor) {
+    override fun close() {
         threadPoolExecutor.shutdown()
     }
 }

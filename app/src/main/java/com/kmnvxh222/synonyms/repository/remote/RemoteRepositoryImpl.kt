@@ -2,18 +2,15 @@ package com.kmnvxh222.synonyms.repository.remote
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.kmnvxh222.synonyms.model.remote.Forms
-import com.kmnvxh222.synonyms.model.remote.Root
 import com.kmnvxh222.synonyms.model.remote.Syn
 import com.kmnvxh222.synonyms.network.RetrofitApi
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.kmnvxh222.synonyms.repository.async.AsyncRepositoryInterface
 import kotlinx.coroutines.*
 
-class RemoteRepositoryImpl : RemoteRepositoryInterface {
+class RemoteRepositoryImpl : RemoteRepositoryInterface, AsyncRepositoryInterface {
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private var job = Job()
+    private val coroutineScope = CoroutineScope(job + Dispatchers.Main)
 
 //    override fun getDataForms(query: String): MutableLiveData<Forms?> {
 //        val formData = MutableLiveData<Forms?>()
@@ -58,5 +55,9 @@ class RemoteRepositoryImpl : RemoteRepositoryInterface {
             Log.d("RemoteRepository", "error SYNS ${e}")
         }
         return synsData
+    }
+
+    override fun close() {
+        job.cancel()
     }
 }

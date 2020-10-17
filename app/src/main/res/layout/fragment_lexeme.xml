@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewLexeme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -51,47 +51,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/title1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:paddingStart="50dp"
-                android:text="@string/forms_title"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/title1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="15dp"-->
+<!--                android:paddingStart="50dp"-->
+<!--                android:text="@string/forms_title"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/textViewForms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="15dp"
-                android:lines="5"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                tools:text="wefqwefqwefqwef"/>
+<!--            <TextView-->
+<!--                android:id="@+id/textViewForms"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="15dp"-->
+<!--                android:lines="5"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="18sp"-->
+<!--                tools:text="wefqwefqwefqwef"/>-->
 
-            <TextView
-                android:id="@+id/title2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:paddingStart="50dp"
-                android:text="@string/root_title"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+<!--            <TextView-->
+<!--                android:id="@+id/title2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="15dp"-->
+<!--                android:paddingStart="50dp"-->
+<!--                android:text="@string/root_title"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"/>-->
 
-            <TextView
-                android:id="@+id/textViewRoot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="15dp"
-                android:lines="5"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                tools:text="wefqwefqwefqwef"/>
+<!--            <TextView-->
+<!--                android:id="@+id/textViewRoot"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="15dp"-->
+<!--                android:lines="5"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="18sp"-->
+<!--                tools:text="wefqwefqwefqwef"/>-->
 
             <TextView
                 android:id="@+id/title3"

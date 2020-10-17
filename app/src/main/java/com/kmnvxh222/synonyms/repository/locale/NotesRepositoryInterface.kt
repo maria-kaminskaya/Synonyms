@@ -8,6 +8,6 @@ interface NotesRepositoryInterface {
     fun updateNote(note: Note)
     fun deleteNote(note: Note)
     fun getAllNotes(): LiveData<List<Note>>?
-    fun getNoteById(id: Long): Note?
+    fun getNoteById(id: Long): LiveData<Note>?
     fun deleteAll()
 }
