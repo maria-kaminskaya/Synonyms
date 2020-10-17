@@ -37,12 +37,12 @@ class LexemesRepositoryImpl(context: Context) : LexemesRepositoryInterface,
         return listLexemes
     }
 
-    override fun getLexemeById(id: Long): Lexeme? {
-        var lexeme: Lexeme? = null
-        val task = Runnable {
-            lexeme = dbDao.getLexemeById(id)
-        }
-        threadPoolExecutor.submit(task)
+    override fun getLexemeById(content: String): LiveData<Lexeme>? {
+        var lexeme: LiveData<Lexeme>? = null
+//        val task = Runnable {
+            lexeme = dbDao.getLexemeById(content)
+//        }
+//        threadPoolExecutor.submit(task)
         return lexeme
     }
 

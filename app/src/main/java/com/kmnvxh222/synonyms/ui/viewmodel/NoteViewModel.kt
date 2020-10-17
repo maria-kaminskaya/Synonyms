@@ -41,6 +41,9 @@ class NoteViewModel(context: Context) : ViewModel() {
 
     }
 
+    fun getLexeme(lexeme: String)=repositoryL.getLexemeById(lexeme)
+
+
     fun addLexeme(word: String){
 //        val forms = repositoryRemote.getDataForms(word).value?.forms.toString()
 //        val root = repositoryRemote.getDataRoot(word).value?.root.toString()

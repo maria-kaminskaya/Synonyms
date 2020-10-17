@@ -21,9 +21,9 @@ class LexemeViewModel(context: Context) : ViewModel() {
         repositoryRemote = RemoteRepositoryImpl()
     }
 
-    fun getLexemeById(id: Long) {
-        repository.getLexemeById(id)
-    }
+//    fun getLexemeById(id: Long) {
+//        repository.getLexemeById(id)
+//    }
 
     fun deleteLexeme(lexeme: Lexeme) {
         repository.deleteLexeme(lexeme)

@@ -93,11 +93,21 @@ class NoteFragment : Fragment() {
 
 
     private fun setDialogLexeme(x: Float, y: Float, visibility: Boolean, text: String) {
+
         val syns = viewModel.getLexemeSyns(text)
         syns.observe(this, Observer<Syn?>() { syn ->
             if (syn != null) {
                 val syns: List<String>? = syn.syns
                 binding.dialogLexeme.isVisible = visibility
+                val favorite = viewModel.getLexeme(text)
+                favorite?.observe(this, {
+                    if(it!=null){
+                        buttonFavorites.setBackgroundResource(R.drawable.ic_favorite)
+                    }else if (it == null){
+                        buttonFavorites.setBackgroundResource(R.drawable.ic_favorite_border)
+                    }
+                })
+
                 binding.dialogLexeme.x = x
                 binding.dialogLexeme.y = y + 350
                 binding.textViewLexeme.text = text
