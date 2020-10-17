@@ -32,8 +32,8 @@ class AllNotesRecyclerAdapter(private var note: List<Note>) :
         }
 
         fun bind(note: Note) {
-            itemView.textViewTitle.text=note.title
-            itemView.textViewDate.text=note.date
+            itemView.textViewTitle.text = note.title
+            itemView.textViewDate.text = note.date
         }
 
         override fun onClick(v: View) = mItemClickListener.onItemClick(v, adapterPosition)

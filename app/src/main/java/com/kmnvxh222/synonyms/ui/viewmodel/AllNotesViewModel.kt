@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.kmnvxh222.synonyms.repository.locale.NotesRepositoryImpl
 import com.kmnvxh222.synonyms.repository.locale.NotesRepositoryInterface
 
-class AllNotesViewModel(context: Context): ViewModel() {
+class AllNotesViewModel(context: Context) : ViewModel() {
 
     private var repository: NotesRepositoryInterface
 
@@ -13,12 +13,10 @@ class AllNotesViewModel(context: Context): ViewModel() {
         repository = NotesRepositoryImpl(context)
     }
 
-
-    fun getAllNotes()=
-        repository.getAllNotes()
+    fun getAllNotes() = repository.getAllNotes()
 
 
-    fun deleteAllNote(){
+    fun deleteAllNote() {
         repository.deleteAll()
     }
 }

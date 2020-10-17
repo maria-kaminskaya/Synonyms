@@ -8,7 +8,6 @@ import com.kmnvxh222.synonyms.model.locale.Lexeme
 import com.kmnvxh222.synonyms.model.remote.Syn
 import com.kmnvxh222.synonyms.repository.locale.LexemesRepositoryImpl
 import com.kmnvxh222.synonyms.repository.locale.LexemesRepositoryInterface
-import com.kmnvxh222.synonyms.repository.locale.NotesRepositoryImpl
 import com.kmnvxh222.synonyms.repository.remote.RemoteRepositoryImpl
 import com.kmnvxh222.synonyms.repository.remote.RemoteRepositoryInterface
 
@@ -22,11 +21,11 @@ class LexemeViewModel(context: Context) : ViewModel() {
         repositoryRemote = RemoteRepositoryImpl()
     }
 
-    fun getLexemeById(id: Long){
+    fun getLexemeById(id: Long) {
         repository.getLexemeById(id)
     }
 
-    fun deleteLexeme(lexeme: Lexeme){
+    fun deleteLexeme(lexeme: Lexeme) {
         repository.deleteLexeme(lexeme)
     }
 

@@ -14,7 +14,8 @@ class LexemesRepositoryImpl(context: Context) : LexemesRepositoryInterface,
     AsyncRepositoryInterface {
 
     private val dbDao = getAppDatabase(context).lexemeDao()!!
-    private val threadPoolExecutor = ThreadPoolExecutor(1, 5, 0L, TimeUnit.SECONDS, SynchronousQueue())
+    private val threadPoolExecutor =
+        ThreadPoolExecutor(1, 5, 0L, TimeUnit.SECONDS, SynchronousQueue())
     private val handler = Handler()
     override fun addNewLexeme(lexeme: Lexeme) {
         val task = Runnable {
@@ -32,7 +33,7 @@ class LexemesRepositoryImpl(context: Context) : LexemesRepositoryInterface,
 
     override fun getAllLexemes(): LiveData<List<Lexeme>>? {
         var listLexemes: LiveData<List<Lexeme>>? = null
-            listLexemes = dbDao.getAllLiveData()
+        listLexemes = dbDao.getAllLiveData()
         return listLexemes
     }
 

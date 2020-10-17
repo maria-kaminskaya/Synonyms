@@ -6,7 +6,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.kmnvxh222.synonyms.model.locale.Lexeme
-import com.kmnvxh222.synonyms.model.locale.Note
 
 @Dao
 interface LexemeDao {

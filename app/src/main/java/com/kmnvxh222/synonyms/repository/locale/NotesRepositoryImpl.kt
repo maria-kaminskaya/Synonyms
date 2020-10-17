@@ -14,23 +14,22 @@ class NotesRepositoryImpl(context: Context) : NotesRepositoryInterface, AsyncRep
 
     private val dbDao = getAppDatabase(context).noteDao()!!
     val threadPoolExecutor = ThreadPoolExecutor(1, 5, 0L, TimeUnit.SECONDS, SynchronousQueue())
-    private val handler = Handler()
     override fun addNewNote(note: Note) {
-        val task = Runnable{
+        val task = Runnable {
             dbDao.insertNewNote(note)
         }
         threadPoolExecutor.submit(task)
     }
 
     override fun updateNote(note: Note) {
-        val task = Runnable{
+        val task = Runnable {
             dbDao.updateNote(note)
         }
         threadPoolExecutor.submit(task)
     }
 
     override fun deleteNote(note: Note) {
-        val task = Runnable{
+        val task = Runnable {
             dbDao.deleteNote(note)
         }
         threadPoolExecutor.submit(task)
@@ -38,13 +37,13 @@ class NotesRepositoryImpl(context: Context) : NotesRepositoryInterface, AsyncRep
 
     override fun getAllNotes(): LiveData<List<Note>>? {
         var listNotes: LiveData<List<Note>>? = null
-            listNotes = dbDao.getAllLiveData()
+        listNotes = dbDao.getAllLiveData()
         return listNotes
     }
 
     override fun getNoteById(id: Long): LiveData<Note>? {
         var note: LiveData<Note>? = null
-        val task = Runnable{
+        val task = Runnable {
             note = dbDao.getNoteById(id)
         }
         threadPoolExecutor.submit(task)

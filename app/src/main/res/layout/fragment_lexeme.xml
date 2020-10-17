@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.view.LexemeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,12 +30,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            tools:text="Лексема"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/buttonBack"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Лексема" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -51,47 +51,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<!--            <TextView-->
-<!--                android:id="@+id/title1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="15dp"-->
-<!--                android:paddingStart="50dp"-->
-<!--                android:text="@string/forms_title"-->
-<!--                android:textColor="@color/colorPrimaryDark"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/title1"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="15dp"-->
+            <!--                android:paddingStart="50dp"-->
+            <!--                android:text="@string/forms_title"-->
+            <!--                android:textColor="@color/colorPrimaryDark"-->
+            <!--                android:textSize="20sp"-->
+            <!--                android:textStyle="bold" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewForms"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:paddingStart="15dp"-->
-<!--                android:lines="5"-->
-<!--                android:textColor="@color/colorPrimaryDark"-->
-<!--                android:textSize="18sp"-->
-<!--                tools:text="wefqwefqwefqwef"/>-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewForms"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:paddingStart="15dp"-->
+            <!--                android:lines="5"-->
+            <!--                android:textColor="@color/colorPrimaryDark"-->
+            <!--                android:textSize="18sp"-->
+            <!--                tools:text="wefqwefqwefqwef"/>-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/title2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="15dp"-->
-<!--                android:paddingStart="50dp"-->
-<!--                android:text="@string/root_title"-->
-<!--                android:textColor="@color/colorPrimaryDark"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold"/>-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/title2"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="15dp"-->
+            <!--                android:paddingStart="50dp"-->
+            <!--                android:text="@string/root_title"-->
+            <!--                android:textColor="@color/colorPrimaryDark"-->
+            <!--                android:textSize="20sp"-->
+            <!--                android:textStyle="bold"/>-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewRoot"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:paddingStart="15dp"-->
-<!--                android:lines="5"-->
-<!--                android:textColor="@color/colorPrimaryDark"-->
-<!--                android:textSize="18sp"-->
-<!--                tools:text="wefqwefqwefqwef"/>-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewRoot"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:paddingStart="15dp"-->
+            <!--                android:lines="5"-->
+            <!--                android:textColor="@color/colorPrimaryDark"-->
+            <!--                android:textSize="18sp"-->
+            <!--                tools:text="wefqwefqwefqwef"/>-->
 
             <TextView
                 android:id="@+id/title3"
@@ -108,11 +108,11 @@
                 android:id="@+id/textViewSyns"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="15dp"
                 android:lines="5"
+                android:paddingStart="15dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
-                tools:text="wefqwefqwefqwef"/>
+                tools:text="wefqwefqwefqwef" />
 
         </LinearLayout>
 

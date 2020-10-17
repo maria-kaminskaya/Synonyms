@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kmnvxh222.synonyms.R
 import com.kmnvxh222.synonyms.databinding.FragmentFavoritesLexemesBinding
 import com.kmnvxh222.synonyms.model.locale.Lexeme
-import com.kmnvxh222.synonyms.model.locale.Note
-import com.kmnvxh222.synonyms.ui.adapters.AllNotesRecyclerAdapter
 import com.kmnvxh222.synonyms.ui.adapters.LexemesRecyclerAdapter
 import com.kmnvxh222.synonyms.ui.viewmodel.FavoritesViewModel
 
@@ -43,9 +41,9 @@ class FavoritesLexemesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun adapterInitialisation(){
+    private fun adapterInitialisation() {
         val lexemes = viewModel.getAllLexemes()
-        lexemes?.observe(viewLifecycleOwner, Observer<List<Lexeme>?>(){ lexeme->
+        lexemes?.observe(viewLifecycleOwner, Observer<List<Lexeme>?>() { lexeme ->
             listLexemes = lexeme
             adapter = LexemesRecyclerAdapter(lexeme)
             adapter.setOnItemClickListener(adapterClickListener)
@@ -72,9 +70,9 @@ class FavoritesLexemesFragment : Fragment() {
             buttonNotes.setOnClickListener {
                 NavHostFragment.findNavController(main).navigate(R.id.allNotesFragment)
             }
-                buttonDeleteAll.setOnClickListener {
-                    viewModel.deleteAll()
-                    adapter.notifyDataSetChanged()
+            buttonDeleteAll.setOnClickListener {
+                viewModel.deleteAll()
+                adapter.notifyDataSetChanged()
 
             }
         }

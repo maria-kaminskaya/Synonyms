@@ -1,11 +1,9 @@
 package com.kmnvxh222.synonyms.ui.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -54,14 +52,14 @@ class LexemeFragment : Fragment() {
         }
     }
 
-    private fun getSyns(text: String){
+    private fun getSyns(text: String) {
         val syns = viewModel.getLexemeSyns(text)
         syns.observe(viewLifecycleOwner, Observer<Syn?>() { syn ->
             if (syn != null) {
                 val syns: List<String>? = syn.syns
                 if (syns != null) {
-                    for (i in syns){
-                        binding.textViewSyns.append(i+"\n")
+                    for (i in syns) {
+                        binding.textViewSyns.append(i + "\n")
                     }
                 }
             }

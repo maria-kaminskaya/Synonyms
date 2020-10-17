@@ -51,10 +51,12 @@ class NoteFragment : Fragment() {
     private fun checkData() {
         if (arguments != null) {
             noteArgument = requireArguments().get("note") as? Note
-            if (noteArgument!=null){
+            if (noteArgument != null) {
                 binding.textViewDate.text = noteArgument!!.date
                 binding.editText.append(noteArgument!!.content)
                 argumentCheck = true
+            } else {
+                binding.textViewDate.text = getCurrentDate()
             }
         }
     }
@@ -101,8 +103,8 @@ class NoteFragment : Fragment() {
                 binding.textViewLexeme.text = text
                 Log.d("setDialogLexeme", "syns $syns")
                 if (syns != null) {
-                    for (i in syns){
-                        binding.textViewSyns.append(i+"\n");
+                    for (i in syns) {
+                        binding.textViewSyns.append(i + "\n");
                     }
                 }
                 buttonDialogListener(text)
@@ -126,13 +128,12 @@ class NoteFragment : Fragment() {
     private fun buttonListener() {
         with(binding) {
             buttonBack.setOnClickListener {
-                if (argumentCheck && noteLocal!=null) {
-                    noteArgument?.content= noteLocal!!.content
-                    noteArgument?.title= noteLocal!!.title
-                    noteArgument?.date= noteLocal!!.date
+                if (argumentCheck && noteLocal != null) {
+                    noteArgument?.content = noteLocal!!.content
+                    noteArgument?.title = noteLocal!!.title
+                    noteArgument?.date = noteLocal!!.date
                     viewModel.editNote(noteArgument!!)
-                }
-                else if(!argumentCheck && noteLocal!=null){
+                } else if (!argumentCheck && noteLocal != null) {
                     viewModel.addNewNote(noteLocal!!)
                 }
                 NavHostFragment.findNavController(main).popBackStack()
@@ -184,16 +185,16 @@ class NoteFragment : Fragment() {
     }
 
     private fun saveNote(s: CharSequence?) {
-        if (s!=null){
+        if (s != null) {
             var title: String = ""
             val content = s.toString()
-            if(s.length>10){
+            if (s.length > 10) {
                 title = content.substring(0, 10)
-            }else if(s.length<10){
+            } else if (s.length < 10) {
                 title = content
             }
             val date = getCurrentDate()
-            noteLocal = Note(title,content,date)
+            noteLocal = Note(title, content, date)
         }
     }
 

@@ -42,13 +42,13 @@ class AllNotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun adapterInitialisation(){
+    private fun adapterInitialisation() {
 
-        Log.d("AllNotesFragment","adapterInitialisation")
-       val notes = viewModel.getAllNotes()
-        notes?.observe(viewLifecycleOwner, Observer<List<Note>>(){ note->
+        Log.d("AllNotesFragment", "adapterInitialisation")
+        val notes = viewModel.getAllNotes()
+        notes?.observe(viewLifecycleOwner, Observer<List<Note>>() { note ->
             listNotes = note
-            Log.d("AllNotesFragment","observe $note $listNotes")
+            Log.d("AllNotesFragment", "observe $note $listNotes")
             adapter = AllNotesRecyclerAdapter(note)
             adapter.setOnItemClickListener(adapterClickListener)
             binding.recyclerViewNotes.let { it ->
@@ -61,8 +61,8 @@ class AllNotesFragment : Fragment() {
 
     private val adapterClickListener = object : AllNotesRecyclerAdapter.OnItemClickListener {
         override fun onItemClick(view: View, position: Int) {
-     val bundle = bundleOf("note" to listNotes[position])
-        findNavController(main).navigate(R.id.noteFragment, bundle)
+            val bundle = bundleOf("note" to listNotes[position])
+            findNavController(main).navigate(R.id.noteFragment, bundle)
         }
     }
 
@@ -77,14 +77,14 @@ class AllNotesFragment : Fragment() {
             buttonL.setOnClickListener {
                 findNavController(main).navigate(R.id.favoritesLexemesFragment)
             }
-                buttonDeleteAll.setOnClickListener {
-                    viewModel.deleteAllNote()
-                    adapter.notifyDataSetChanged()
+            buttonDeleteAll.setOnClickListener {
+                viewModel.deleteAllNote()
+                adapter.notifyDataSetChanged()
 
             }
         }
     }
-//
+
     override fun onResume() {
         super.onResume()
         adapterInitialisation()

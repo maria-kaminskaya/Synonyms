@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.view.FavoritesLexemesFragment">
 
     <TextView
         android:id="@+id/buttonEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/edit_title"
         android:paddingTop="15dp"
         android:paddingEnd="15dp"
+        android:text="@string/edit_title"
         android:textAlignment="viewEnd"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -47,10 +48,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="start"
-            tools:listitem="@layout/item_favorite_lexeme"
-            tools:itemCount="30"/>
-
+            tools:itemCount="30"
+            tools:listitem="@layout/item_favorite_lexeme" />
     </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -86,6 +87,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,15 +18,6 @@ object RetrofitApi {
         .setLenient()
         .create()
 
-    private fun createGsonConverter(type: Type, typeAdapter: Any): Converter.Factory {
-        val gsonBuilder = GsonBuilder()
-        gsonBuilder.registerTypeAdapter(type, typeAdapter)
-        val gson = gsonBuilder
-            .setLenient()
-            .create()
-        return GsonConverterFactory.create(gson)
-    }
-
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(ScalarsConverterFactory.create())

@@ -5,7 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.kmnvxh222.synonyms.model.remote.Syn
 import com.kmnvxh222.synonyms.network.RetrofitApi
 import com.kmnvxh222.synonyms.repository.async.AsyncRepositoryInterface
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class RemoteRepositoryImpl : RemoteRepositoryInterface, AsyncRepositoryInterface {
 
