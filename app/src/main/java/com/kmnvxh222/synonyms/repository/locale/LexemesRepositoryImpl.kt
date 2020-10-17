@@ -48,6 +48,13 @@ class LexemesRepositoryImpl(context: Context) : LexemesRepositoryInterface,
         return lexeme
     }
 
+    override fun deleteAll() {
+        val task = Runnable {
+            dbDao.deleteAllLexemes()
+        }
+        threadPoolExecutor.submit(task)
+    }
+
     override fun close(threadPoolExecutor: ThreadPoolExecutor) {
         threadPoolExecutor.shutdown()
     }

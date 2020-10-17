@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "lexemes")
 data class Lexeme(
     val lexeme: String,
-    val forms: List<String>,
-    val root: List<String>,
-    val syns: List<String>
-){
+//    val forms: String,
+//    val root: String,
+    val syns: String
+) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 }

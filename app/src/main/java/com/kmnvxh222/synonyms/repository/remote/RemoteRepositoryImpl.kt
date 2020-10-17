@@ -1,64 +1,62 @@
 package com.kmnvxh222.synonyms.repository.remote
 
-import android.annotation.SuppressLint
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.kmnvxh222.synonyms.model.remote.Forms
 import com.kmnvxh222.synonyms.model.remote.Root
 import com.kmnvxh222.synonyms.model.remote.Syn
 import com.kmnvxh222.synonyms.network.RetrofitApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
 
-class RemoteRepositoryImpl:RemoteRepositoryInterface {
+class RemoteRepositoryImpl : RemoteRepositoryInterface {
 
-    override fun getDataForms(query: String): Forms? {
-        var formData: Forms? = null
-        val observable = RetrofitApi.retrofitApiService.getForms(query)
-        observable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { response ->
-                    formData = response.response?.one
-                    Log.d("RemoteRepository", "FORMS ${response}")
-                },
-                { error ->
-                    Log.d("RemoteRepository", "error ${error}")
-                }
-            )
-        return formData
-    }
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    override fun getDataRoot(query: String): Root? {
-        var rootData: Root? = null
-        val observable = RetrofitApi.retrofitApiService.getRoot(query)
-        observable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { response ->
-                    rootData = response.response?.one
-                    Log.d("RemoteRepository", "ROOT ${response}")
-                },
-                { error ->
-                    Log.d("RemoteRepository", "error ${error}")
-                }
-            )
-        return rootData
-    }
+//    override fun getDataForms(query: String): MutableLiveData<Forms?> {
+//        val formData = MutableLiveData<Forms?>()
+//        try {
+//            coroutineScope.launch {
+//                val response = RetrofitApi.retrofitApiService.getForms(query)
+//                formData.value = response.await().response?.get("1")
+//                Log.d("RemoteRepository", " FORM ${response.isCompleted}")
+//                Log.d("RemoteRepository", " FORM ${formData.value}")
+//            }
+//        } catch (e: Exception) {
+//            Log.d("RemoteRepository", "error FORM ${e}")
+//        }
+//        return formData
+//    }
+//
+//    override fun getDataRoot(query: String): MutableLiveData<Root?> {
+//        val rootData = MutableLiveData<Root?>()
+//        try {
+//            coroutineScope.launch {
+//                val response = RetrofitApi.retrofitApiService.getRoot(query)
+//                rootData.value = response.await().response?.get("1")
+//                Log.d("RemoteRepository", " ROOT ${response.isCompleted}")
+//                Log.d("RemoteRepository", " ROOT ${rootData.value}")
+//            }
+//        } catch (e: Exception) {
+//            Log.d("RemoteRepository", "error ROOT ${e}")
+//        }
+//        return rootData
+//    }
 
-    override fun getDataSyns(query: String): Syn? {
-        var synsData: Syn? = null
-        val observable = RetrofitApi.retrofitApiService.getSyns(query)
-        observable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { response ->
-                    synsData = response.response?.one
-                    Log.d("RemoteRepository", "SYNS ${response}")
-                },
-                { error ->
-                    Log.d("RemoteRepository", "error ${error}")
-                }
-            )
+    override fun getDataSyns(query: String): MutableLiveData<Syn?> {
+        val synsData = MutableLiveData<Syn?>()
+        try {
+            coroutineScope.launch {
+                val response = RetrofitApi.retrofitApiService.getSyns(query)
+                synsData.value = response.await().response?.get("1")
+                Log.d("RemoteRepository", " SYNS ${response.isCompleted}")
+                Log.d("RemoteRepository", " SYNS ${synsData.value}")
+            }
+        } catch (e: Exception) {
+            Log.d("RemoteRepository", "error SYNS ${e}")
+        }
         return synsData
     }
 }

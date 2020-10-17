@@ -8,8 +8,8 @@ data class Forms(
     val lemma: String,
     val pos: String,
     val vector: List<String>,
-    val forms: JsonArray,
-    val forms_query: JsonObject
+    val forms: Map<String,List<String>>,
+    val forms_query: Map<String,List<String>>,
 )
 
 

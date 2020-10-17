@@ -1,7 +1,9 @@
 package com.kmnvxh222.synonyms.network
 
+import androidx.lifecycle.LiveData
 import com.kmnvxh222.synonyms.model.remote.*
 import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -50,12 +52,13 @@ private const val ROOT_REQUEST="$REQUEST$PARAMETER_REQUEST_ROOT_C&" +
 
 interface ApiService {
     @GET("/api?token=4e902aa5795143135853e81625bfb3f7dd0ed956&c=syns&query=кот&lang=ru&top=5&forms=0&scores=0")
-    fun getSyns(@Query("query") query: String): Observable<Response<GetOne<Syn>>>
+//    fun getSyns(@Query("query") query: String): LiveData<ApiResponse<Syn?>>
+    fun getSyns(@Query("query") query: String): Deferred<Response<Syn>>
 
-    @GET("/api?token=4e902aa5795143135853e81625bfb3f7dd0ed956&c=root&query=кот&lang=ru&top=10&forms=0&scores=0")
-    fun getRoot(@Query("query") query: String): Observable<Response<GetOne<Root>>>
-
-    @GET("/api?token=4e902aa5795143135853e81625bfb3f7dd0ed956&c=vector&query=кот&lang=ru&top=1&forms=1&scores=0")
-    fun getForms(@Query("query") query: String): Observable<Response<GetOne<Forms>>>
+//    @GET("/api?token=4e902aa5795143135853e81625bfb3f7dd0ed956&c=root&query=кот&lang=ru&top=10&forms=0&scores=0")
+//    fun getRoot(@Query("query") query: String): Deferred<Response<Root>>
+//
+//    @GET("/api?token=4e902aa5795143135853e81625bfb3f7dd0ed956&c=vector&query=кот&lang=ru&top=1&forms=1&scores=0")
+//    fun getForms(@Query("query") query: String): Deferred<Response<Forms>>
 
 }

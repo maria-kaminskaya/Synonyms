@@ -54,6 +54,13 @@ class NotesRepositoryImpl(context: Context) : NotesRepositoryInterface, AsyncRep
         return note
     }
 
+    override fun deleteAll() {
+        val task = Runnable {
+            dbDao.deleteAllNotes()
+        }
+        threadPoolExecutor.submit(task)
+    }
+
     override fun close(threadPoolExecutor: ThreadPoolExecutor) {
         threadPoolExecutor.shutdown()
     }

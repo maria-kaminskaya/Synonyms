@@ -21,4 +21,7 @@ interface LexemeDao {
 
     @Query("SELECT * FROM lexemes WHERE id = :id")
     fun getLexemeById(id: Long): Lexeme?
+
+    @Query("DELETE FROM lexemes")
+    fun deleteAllLexemes()
 }

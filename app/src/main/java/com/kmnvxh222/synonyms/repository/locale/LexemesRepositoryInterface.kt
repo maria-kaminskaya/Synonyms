@@ -8,4 +8,5 @@ interface LexemesRepositoryInterface {
     fun deleteLexeme(lexeme: Lexeme)
     fun getAllLexemes(): LiveData<List<Lexeme>>?
     fun getLexemeById(id: Long): Lexeme?
+    fun deleteAll()
 }
