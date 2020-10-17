@@ -146,14 +146,7 @@ class NoteFragment : Fragment() {
             val textWatcher = object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     saveNote(s)
-                }
 
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
                     editText.setOnTouchListener { v, event ->
                         val layout: Layout? = (v as TextView).layout
                         val x = event.x.toInt()
@@ -171,7 +164,14 @@ class NoteFragment : Fragment() {
                         }
                         true
                     }
+                }
 
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
