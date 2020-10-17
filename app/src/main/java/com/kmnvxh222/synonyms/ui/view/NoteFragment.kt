@@ -38,6 +38,7 @@ class NoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNoteBinding.inflate(inflater, container, false)
+        binding.editText.isVerticalScrollBarEnabled = true
         viewModel = NoteViewModel(requireContext())
         return binding.root
     }
